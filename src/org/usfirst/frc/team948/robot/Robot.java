@@ -26,15 +26,15 @@ public class Robot extends IterativeRobot {
 		RobotMap.testEncoder.setDistancePerPulse(1);
 		SmartDashboard.putData("Auto mode", chooser);
 //		camera = CameraServer.getInstance().startAutomaticCapture();
-		LiveWindow.addActuator("Spark0", "Drive", RobotMap.testMotor0);
-		LiveWindow.addActuator("Spark1", "Drive", RobotMap.testMotor1);
-		LiveWindow.addActuator("Spark2", "Drive", RobotMap.testMotor2);
-		LiveWindow.addActuator("Spark3", "Drive", RobotMap.testMotor3);
-		LiveWindow.addSensor("Encoder", "Drive", RobotMap.testEncoder);
+		LiveWindow.addActuator("Drive", "Spark0", RobotMap.testMotor0);
+		LiveWindow.addActuator("Drive", "Spark1", RobotMap.testMotor1);
+		LiveWindow.addActuator("Drive", "Spark2", RobotMap.testMotor2);
+		LiveWindow.addActuator("Drive", "Spark3" , RobotMap.testMotor3);
+		LiveWindow.addSensor("Drive", "Encoder", RobotMap.testEncoder);
 	}
 
 	public void disabledInit() {
-
+		RobotMap.testEncoder.reset();
 	}
 
 	public void disabledPeriodic() {
@@ -72,7 +72,7 @@ public class Robot extends IterativeRobot {
 	}
 	public void periodicAll()
 	{
-		SmartDashboard.putNumber("EncoderSpeed", RobotMap.testEncoder.getRate());
+		SmartDashboard.putNumber("EncoderSpeed", RobotMap.testEncoder.get());
 //		SmartDashboard.putData("reset encoders", new Command(){
 //
 //				@Override
