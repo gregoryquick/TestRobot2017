@@ -1,6 +1,8 @@
 package org.usfirst.frc.team948.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -34,4 +36,6 @@ public class OI {
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
+	public static DriverStation ds = DriverStation.getInstance();
+	public static NetworkTable dashboard = NetworkTable.getTable("SmartDashboard");
 }

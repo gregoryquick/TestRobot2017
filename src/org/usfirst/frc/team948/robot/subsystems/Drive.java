@@ -2,6 +2,7 @@ package org.usfirst.frc.team948.robot.subsystems;
 
 import org.usfirst.frc.team948.robot.RobotMap;
 import org.usfirst.frc.team948.robot.commands.Idle;
+import org.usfirst.frc.team948.robot.commands.MatchDesiredHeading;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
@@ -30,7 +31,7 @@ public class Drive extends Subsystem implements PIDOutput {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new Idle());
+    	setDefaultCommand(new MatchDesiredHeading());
     }
     
     public void rawTankDrive(double powerLeft, double powerRight){
@@ -59,6 +60,10 @@ public class Drive extends Subsystem implements PIDOutput {
     
     public void turnTurnToHeading(){
     	rawTankDrive(pidOutput,pidOutput);
+    }
+    
+    public void updateTurnToHeading(double heading){
+    	drivePID.setSetpoint(heading);
     }
     
 	public void endTurnToHeading() {

@@ -17,17 +17,18 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 
-	public static DS2017 oi;
+	public static OI oi;
 	public static Drive drive = new Drive();
 	Command autonomousCommand;
 	SendableChooser chooser;
 	UsbCamera camera;
 
 	public void robotInit() {
-		oi = new DS2017();
+		oi = new OI();
 		chooser = new SendableChooser();
 		RobotMap.testEncoder.setDistancePerPulse(1);
 		SmartDashboard.putData("Auto mode", chooser);
+		SmartDashboard.putNumber("DesiredHeading", RobotMap.navx.getAngle());
 //		camera = CameraServer.getInstance().startAutomaticCapture();
 		LiveWindow.addActuator("Drive", "Spark0", RobotMap.testMotor0);
 		LiveWindow.addActuator("Drive", "Spark1", RobotMap.testMotor1);
@@ -60,7 +61,6 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
-		Timer.delay(1);
 	}
 
 	
