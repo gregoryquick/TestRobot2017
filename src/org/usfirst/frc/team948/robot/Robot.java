@@ -2,6 +2,8 @@
 package org.usfirst.frc.team948.robot;
 
 
+import org.usfirst.frc.team948.robot.subsystems.Drive;
+
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -16,6 +18,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
 	public static DS2017 oi;
+	public static Drive drive = new Drive();
 	Command autonomousCommand;
 	SendableChooser chooser;
 	UsbCamera camera;
@@ -34,6 +37,7 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void disabledInit() {
+		RobotMap.testEncoder.reset();
 		RobotMap.testEncoder.reset();
 	}
 
@@ -72,7 +76,7 @@ public class Robot extends IterativeRobot {
 	}
 	public void periodicAll()
 	{
-		SmartDashboard.putNumber("EncoderSpeed", RobotMap.testEncoder.get());
+		SmartDashboard.putNumber("Heading", RobotMap.navx.getAngle());
 //		SmartDashboard.putData("reset encoders", new Command(){
 //
 //				@Override
