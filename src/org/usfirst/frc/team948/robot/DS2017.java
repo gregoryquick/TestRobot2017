@@ -35,13 +35,5 @@ public class DS2017 {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
-	public static Joystick leftJS= new Joystick (0);
-	public static Joystick rightJS = new Joystick (1);
-	public static Button rightTrigger = new JoystickButton(rightJS, 1);
-	
-	public static void buttonInit()
-	{
-		
-	}
 }
 

@@ -1,7 +1,8 @@
 package org.usfirst.frc.team948.robot;
 
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 
 /**
@@ -11,10 +12,9 @@ import edu.wpi.first.wpilibj.Victor;
  * floating around.
  */
 public class RobotMap {
-	public static Victor backLeftMotor = new Victor(3);
-	public static Victor frontLeftMotor = new Victor(2);
-	public static Victor backRightMotor = new Victor(1);
-	public static Victor frontRightMotor = new Victor(0);
-	public static Encoder rightEncoder = new Encoder(2,3);
-	public static Encoder leftEncoder = new Encoder(0,1);
+	public static Spark testMotor0 = new Spark(0);
+	public static Spark testMotor1 = new Spark(1);
+	public static Spark testMotor2 = new Spark(2);
+	public static Spark testMotor3 = new Spark(3);
+	public static Encoder testEncoder = new Encoder(0, 1,false, Encoder.EncodingType.k4X);
 }
