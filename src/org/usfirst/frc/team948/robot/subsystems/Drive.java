@@ -1,5 +1,6 @@
 package org.usfirst.frc.team948.robot.subsystems;
 
+import org.usfirst.frc.team948.robot.Robot;
 import org.usfirst.frc.team948.robot.RobotMap;
 import org.usfirst.frc.team948.robot.commands.Idle;
 import org.usfirst.frc.team948.robot.commands.MatchDesiredHeading;
@@ -12,9 +13,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Drive extends Subsystem implements PIDOutput {
-	private final double Turn_P = RobotMap.preferences.getDouble("Turn_D", 0.06);
-	private final double Turn_I = RobotMap.preferences.getDouble("Turn_I", 0.003);
-	private final double Turn_D = RobotMap.preferences.getDouble("Turn_D", 0.3);
+	private final double Turn_P = Robot.rm.preferences.getDouble("Turn_D", 0.06);
+	private final double Turn_I = Robot.rm.preferences.getDouble("Turn_I", 0.003);
+	private final double Turn_D = Robot.rm.preferences.getDouble("Turn_D", 0.3);
 	
 	private PIDController drivePID;
 
@@ -31,22 +32,22 @@ public class Drive extends Subsystem implements PIDOutput {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new MatchDesiredHeading());
+    	setDefaultCommand(new Idle());
     }
     
     public void rawTankDrive(double powerLeft, double powerRight){
     	//Change to invert correctly and have motors use correct power
-    	RobotMap.testMotor0.set(powerLeft);
-    	RobotMap.testMotor1.set(powerLeft);
-    	RobotMap.testMotor2.set(-powerRight);
-    	RobotMap.testMotor3.set(-powerRight);
+    	Robot.rm.testMotor0.set(-powerRight);
+    	Robot.rm.testMotor1.set(powerLeft);
+    	Robot.rm.testMotor2.set(-powerRight);
+    	Robot.rm.testMotor3.set(powerLeft);
     }
     
     public void rawStop(){
-    	RobotMap.testMotor0.set(0);;
-    	RobotMap.testMotor1.set(0);
-    	RobotMap.testMotor2.set(0);
-    	RobotMap.testMotor3.set(0);
+    	Robot.rm.testMotor0.set(0);
+    	Robot.rm.testMotor1.set(0);
+    	Robot.rm.testMotor2.set(0);
+    	Robot.rm.testMotor3.set(0);
     }
     
     public void initTurnToHeading(double heading, double tolerence){

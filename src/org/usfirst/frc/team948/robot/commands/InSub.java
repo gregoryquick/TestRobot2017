@@ -9,6 +9,7 @@ import com.kauailabs.navx.frc.AHRS;
 
 public interface InSub {
 	public OI IO = Robot.oi;
+	public RobotMap rm = Robot.rm;
 	public Drive drive = Robot.drive;
-	public AHRS navx = RobotMap.navx;
+	public AHRS navx = Robot.rm.navx;
 }

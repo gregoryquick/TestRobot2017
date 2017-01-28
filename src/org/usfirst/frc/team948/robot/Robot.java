@@ -4,20 +4,27 @@ package org.usfirst.frc.team948.robot;
 
 import org.usfirst.frc.team948.robot.subsystems.Drive;
 
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Preferences;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
+	public static RobotMap rm = new RobotMap();
 	public static Drive drive = new Drive();
 	Command autonomousCommand;
 	SendableChooser chooser;
@@ -26,6 +33,10 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		oi = new OI();
 		chooser = new SendableChooser();
+		oi.dashboard = NetworkTable.getTable("SmartDashboard");
+		oi.ds = DriverStation.getInstance();
+		rm.navx = new AHRS(SPI.Port.kMXP);
+		rm.preferences = Preferences.getInstance();
 		RobotMap.testEncoder.setDistancePerPulse(1);
 		SmartDashboard.putData("Auto mode", chooser);
 		SmartDashboard.putNumber("DesiredHeading", RobotMap.navx.getAngle());

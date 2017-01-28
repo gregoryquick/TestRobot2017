@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class TurnToHeading extends Command implements InSub{
 	double heading;
-	private double Turn_T = RobotMap.preferences.getDouble("Turn_T", 1.0);
+	private double Turn_T = rm.preferences.getDouble("Turn_T", 1.0);
     public TurnToHeading(double heading) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);

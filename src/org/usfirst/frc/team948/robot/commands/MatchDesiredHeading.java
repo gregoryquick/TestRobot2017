@@ -12,8 +12,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class MatchDesiredHeading extends Command implements InSub {
 	
-	double targetHeading = (double) OI.dashboard.getValue("DesiredHeading", navx.getAngle());
-	private double Turn_T = RobotMap.preferences.getDouble("Turn_T", 1.0);
+//	double targetHeading = (double) IO.dashboard.getValue("DesiredHeading", navx.getAngle());
+	double targetHeading = -180;
+	private double Turn_T = rm.preferences.getDouble("Turn_T", 1.0);
     public MatchDesiredHeading() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -27,7 +28,7 @@ public class MatchDesiredHeading extends Command implements InSub {
 
     // Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		targetHeading = (double) OI.dashboard.getValue("DesiredHeading", navx.getAngle());
+//		targetHeading = (double) IO.dashboard.getValue("DesiredHeading", navx.getAngle());
     	drive.updateTurnToHeading(targetHeading);
     	drive.turnTurnToHeading();
     }

@@ -20,6 +20,6 @@ public class RobotMap {
 	public static Spark testMotor2 = new Spark(2);
 	public static Spark testMotor3 = new Spark(3);
 	public static Encoder testEncoder = new Encoder(0, 1,false, Encoder.EncodingType.k4X);
-	public static AHRS navx = new AHRS(SPI.Port.kMXP);
-	public static Preferences preferences = Preferences.getInstance();
+	public static AHRS navx;
+	public Preferences preferences;
 }
