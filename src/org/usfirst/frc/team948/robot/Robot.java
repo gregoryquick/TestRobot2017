@@ -3,6 +3,7 @@ package org.usfirst.frc.team948.robot;
 
 import org.usfirst.frc.team948.robot.commandgroups.BackNForth;
 import org.usfirst.frc.team948.robot.commands.simpleStraitDrive;
+import org.usfirst.frc.team948.robot.commands.simpleTurnDegrees;
 import org.usfirst.frc.team948.robot.subsystems.Drive;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -28,6 +29,7 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void disabledInit() {
+		rm.navx.reset();
 		
 	}
 
@@ -38,14 +40,15 @@ public class Robot extends IterativeRobot {
 
 	public void autonomousInit() {
 //		autonomousCommand = (Command) chooser.getSelected();
-		autonomousCommand = new BackNForth();
+//		autonomousCommand = new BackNForth();
+		autonomousCommand = new simpleTurnDegrees(90);
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}
 
 	public void autonomousPeriodic() {
 		periodicAll();
-		Scheduler.getInstance().add(autonomousCommand);
+//		Scheduler.getInstance().add(autonomousCommand);
 		Scheduler.getInstance().run();
 	}
 
