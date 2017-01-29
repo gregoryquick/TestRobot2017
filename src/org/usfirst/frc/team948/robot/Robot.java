@@ -11,8 +11,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 	Command autonomousCommand;
 	SendableChooser chooser;
+	RobotMap rm;
 
 	public void robotInit() {
+		rm = new RobotMap();
 		chooser = new SendableChooser();
 		SmartDashboard.putData("Auto mode", chooser);
 	}
