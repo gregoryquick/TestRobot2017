@@ -8,35 +8,37 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class simpleTurnDegrees extends Command {
+public class simpleTurnToHeading extends Command {
 
-	private final double startHeading;
 	private final double finalHeading;
 	private double currentHeading;
 	
-    public simpleTurnDegrees(double deltaheading) {
+    public simpleTurnToHeading(double heading) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	startHeading = Robot.rm.navx.getAngle();
-    	finalHeading = startHeading + deltaheading;
+    	requires(Robot.drive);
+    	finalHeading = heading;
     	
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.drive.rawStop();
+    	currentHeading = Robot.rm.navx.getAngle();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	currentHeading = Robot.rm.navx.getAngle();
     	double delta = finalHeading - currentHeading;
-    	Robot.drive.rawTankDrive(MathUtil.clamp(-0.3, 0.3, delta/36),-MathUtil.clamp(-0.3, 0.3, delta/36));
+    	Robot.drive.rawTankDrive(MathUtil.inverseClamp(-0.2, 0.2, MathUtil.clamp(-0.5, 0.5,  MathUtil.deadband(0,0.05,delta/36)))
+    			,-MathUtil.inverseClamp(-0.2, 0.2, MathUtil.clamp(-0.5, 0.5, MathUtil.deadband(0,0.05,delta/36))));
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return MathUtil.deadband(finalHeading, 7.0, currentHeading) == 0;
+//        return MathUtil.deadband(finalHeading, 7.0, currentHeading) == 0;
+    	return false;
     }
 
     // Called once after isFinished returns true
