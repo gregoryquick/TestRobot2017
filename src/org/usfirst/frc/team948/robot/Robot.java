@@ -23,12 +23,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 
+	public static final RobotMap rm = new RobotMap();
+	public static final Drive drive = new Drive();
 	public static OI oi;
-	public static RobotMap rm = new RobotMap();
-	public static Drive drive = new Drive();
 	Command autonomousCommand;
 	SendableChooser chooser;
-	UsbCamera camera;
+//	UsbCamera camera;
 
 	public void robotInit() {
 		oi = new OI();
