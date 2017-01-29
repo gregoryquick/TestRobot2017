@@ -1,6 +1,9 @@
 package org.usfirst.frc.team948.robot;
 
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.Preferences;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -16,6 +19,7 @@ public class RobotMap {
 	public final Spark frontLeftMotor;
 	public final Spark backRightMotor;
 	public final Spark backLeftMotor;
+	public final AHRS navx;
 	
 	public RobotMap(){
 		//Inititilize preferences
@@ -38,5 +42,9 @@ public class RobotMap {
 		LiveWindow.addActuator("Drive", "backRightMotor", backRightMotor);
 		LiveWindow.addActuator("Drive", "frontLeftMotor", frontLeftMotor);
 		LiveWindow.addActuator("Drive", "backLeftMotor", backLeftMotor);
+		
+		//Initiates navx
+		navx = new AHRS(SPI.Port.kMXP);
+		navx.reset();
 	}
 }
