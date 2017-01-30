@@ -71,6 +71,13 @@ public class Robot extends IterativeRobot {
 	}
 	public void periodicAll()
 	{
+		//Stop heading drift
+		if(Math.abs(rm.navx.getRawGyroZ()) < 0.6){
+			double tmpangle = rm.navx.getAngle();
+			rm.navx.reset();
+			rm.navx.setAngleAdjustment(tmpangle);
+		}
+		SmartDashboard.putNumber("RawHeading", rm.navx.getRawGyroZ());
 		SmartDashboard.putNumber("Heading", rm.navx.getAngle());
 	}
 
