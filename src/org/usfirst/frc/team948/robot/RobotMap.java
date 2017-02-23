@@ -19,6 +19,7 @@ public class RobotMap {
 	public final Spark frontLeftMotor;
 	public final Spark backRightMotor;
 	public final Spark backLeftMotor;
+//	public final Solonoid 
 	public final AHRS navx;
 	
 	public RobotMap(){
